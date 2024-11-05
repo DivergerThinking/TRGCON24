@@ -1,0 +1,18 @@
+1. Line-by-Line Completion:
+
+def calculate_average
+
+FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+
+CODIGO DE EVALUACION
+```
+...
+```
+
+2. Docstring to Code:
+
+def sort_students_by_gpa(self) -> List[Student]:
+    """
+    Sort all students in the registry by their GPA in descending order.
+    Returns a list of students from highest to lowest GPA.
+    """

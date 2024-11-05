@@ -32,7 +32,14 @@ Now that the code edits are available, it makes the chat more useful for:
 - implementing functionality that depends on the existing code
 - refactoring existing code
 
-### Tips
+Examples:
+- explaining what the project does / how the documentation works
+- asking how to add a new use case / or modify an existing one
+- deduplicating code
+- breaking down complex functions into smaller ones
+- renaming variables and functions to more descriptive names
+
+Tips:
 
 - Start general then get specific
 - Give examples (PS: can add examples in the docstrings)
@@ -42,16 +49,7 @@ Now that the code edits are available, it makes the chat more useful for:
 
 https://docs.github.com/en/copilot/using-github-copilot/prompt-engineering-for-github-copilot
 
-### Code reviews
-
-How does it work and how do they compare?
-
-### Additional features
-
-- Git commit generation (Github Copilot)
-- Working on pull requests (Github Copilot)
-
-### Limitations:
+Limitations:
 - the AI doesn't have the global context of the codebase as the developer have
 - large codebases have a lot of dependencies that are hard to track for the AI
 - passing the full context to the AI is not usually feasible due to token limits
@@ -63,6 +61,15 @@ How do both tools work around those limitations?
 
 https://www.reddit.com/r/cursor/comments/1fu02l6/cursor_composer_works_great_for_me_but_it/
 
+### Code reviews
+
+How does it work and how do they compare?
+
+### Additional features
+
+- Git commit generation (Github Copilot)
+- Working on pull requests (Github Copilot)
+- Customizating system prompts (Cursor)
 
 ## Codeas  [Manu]
 
