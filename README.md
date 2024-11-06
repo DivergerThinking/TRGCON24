@@ -12,11 +12,10 @@
 
 ### Autocomplete
 
-How does it work and how do they compare?
-- code generation
-- smart rewrites
-- multi-line autocomplete (cursor)
-- cursor prediction (cursor)
+Both Cursor and Copilot have autocomplete functionality.
+They are very similar but the main difference is that they have a different context retrieval mechanism and that Cursor's autocomplete also includes two interesting features:
+- multi-line autocomplete
+- cursor prediction
 https://www.cursor.com/features
 
 ### Chat
@@ -64,6 +63,8 @@ https://www.reddit.com/r/cursor/comments/1fu02l6/cursor_composer_works_great_for
 ### Code reviews
 
 How does it work and how do they compare?
+
+https://docs.github.com/en/copilot/using-github-copilot/code-review/using-copilot-code-review (Copilot)
 
 ### Additional features
 

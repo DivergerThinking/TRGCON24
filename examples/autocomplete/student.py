@@ -1,4 +1,5 @@
 from datetime import datetime
+import re
 from typing import List, Dict, Optional
 
 class Student:
@@ -118,4 +119,7 @@ class StudentRegistry:
 if __name__ == "__main__":
     registry = StudentRegistry()
     registry.add_student(Student(1, "John Doe", "john.doe@example.com"))
+    registry.add_student(Student(2, "Jane Doe", "jane.doe@example.com"))
+    registry.add_student(Student(3, "Jim Beam", "jim.beam@example.com"))
     print(registry.generate_report())
+    
