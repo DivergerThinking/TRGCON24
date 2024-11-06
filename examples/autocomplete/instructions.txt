@@ -4,13 +4,21 @@
 
     FEEDBACK: 
 
-        Copilot:
+        Copilot: Asume que el metodo es para calcular la media de gpa del registro(completa el nombre del método). Funciona OK
 
-        Cursor
+        Cursor: Igual que copilot pero no genera comentarios y hace menos líneas de código. Funciona OK
 
     CODIGO DE EVALUACION
     ```
+    # Calculate and print individual student GPAs
+    print("Individual Student GPAs:")
+    for student_id, student in registry.students.items():
+        print(f"{student.name}: {student.calculate_gpa()}")
     
+    # Calculate and print average GPA
+    average_gpa = registry.calculate_average_gpa()
+    print(f"\nAverage GPA across all students: {average_gpa}")
+    # Expected average GPA: (3.5 + 3.0 + 2.5) / 3 = 3.0
     ```
 
 2. Docstring to Code:
@@ -22,34 +30,60 @@
         """
     # Copilot should suggest the implementation
 
-    FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+    FEEDBACK: 
+
+        Copilot: Todo Ok.
+
+        Cursor: Todo Ok. Genera exactamente el mismo código
 
     CODIGO DE EVALUACION
     ```
-    
+    # Sort students by GPA
+    sorted_students = registry.sort_students_by_gpa()
+
+    print("Sorted Students by GPA (Descending):")
+    for student in sorted_students:
+        print(f"{student.name}: GPA = {student.calculate_gpa()}")
     ```   
 
  3. Function Signature to Implementation:
 
     def find_students_in_course(self, course_name: str) -> List[Student]: 
 
-    FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+    FEEDBACK: 
+
+        Copilot: Solo genera un comentario no llega a generar el metodo.
+
+        Cursor: Todo ok lo genera y se ejecuta bien.
 
     CODIGO DE EVALUACION
     ```
+     # Find students enrolled in a specific course
+     course_name = "Math"
+     students_in_course = registry.find_students_in_course(course_name)
     
+     # Print students enrolled in the course
+     print(f"Students enrolled in '{course_name}':")
+     for student in students_in_course:
+        print(f"{student.name} (ID: {student.student_id})")
     ```  
 
 4. Comment-Driven Development:
 
-    # Find all students with a GPA above 3.5 and send them a congratulatory email
-    def notify_honor_students(self):    
+    # Find all students with a GPA equals or above 3.5 and send them a congratulatory email
+    def notify_honor_students(self):     
 
-    FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+    FEEDBACK:
+
+        Copilot: Todo OK se ejecuta correctamente.
+
+        Cursor: Hice varias pruebas y alguna vez si que consigió generar el código correctamente pero la mayoria del tiempo solo genera un pass.
 
     CODIGO DE EVALUACION
     ```
-    
+    # Congrats to the brilliant students
+    print("Sending congratulatory emails to honor students:")
+    registry.notify_honor_students()
     ```  
 
 
@@ -63,13 +97,14 @@
 
      FEEDBACK: 
 
-        Copilot:
+        Copilot: No funciona simplemente intenta crear un estudiante.
 
-        Cursor
+        Cursor: O genera un pass o solo intenta hacer el assert que no funciona :(
 
     CODIGO DE EVALUACION
     ```
-    
+    #Test 
+    registry.test_student_gpa_calculation()
     ```
 
 
@@ -81,13 +116,19 @@
 
      FEEDBACK: 
 
-        Copilot:
+        Copilot: Solo genera un pass.
 
-        Cursor
+        Cursor: Igual que copilot solo genera un pass
 
     CODIGO DE EVALUACION
     ```
-    
+    #try with the new exception
+    try:
+        student = registry.get_student(9999)  # ID que no existe
+        if student is None:
+            raise StudentNotFoundException(9999)
+    except StudentNotFoundException as e:
+        print(e)  
     ```
 
 
@@ -96,18 +137,24 @@
 
     # Start writing error handling:
     try:
-        student = self.get_student(student_id)  
+        student = self.get_student(9999)  
 
 
      FEEDBACK: 
 
-        Copilot:
+        Copilot: Genera bien el handling de los errores pero no de golpe hay que tabular línea a línea.
 
-        Cursor
+        Cursor: Todo OK.
 
-    CODIGO DE EVALUACION
+    CODIGO DE EVALUACION(es una excepxion poner ENCIMA del main)
     ```
-    
+    class StudentNotFoundException(Exception):
+    """Exception raised when a student is not found in the registry."""
+    def __init__(self, student_id: int):
+        self.student_id = student_id
+        self.message = f"Student with ID {self.student_id} not found."
+        super().__init__(self.message)      
+
     ```     
 
 
@@ -120,13 +167,13 @@
 
      FEEDBACK: 
 
-        Copilot:
+        Copilot: A medida que vas tabulando va sugiriendo nuevos campos.
 
-        Cursor
+        Cursor: Genera de golpe los campos student_id y gmail y cierra la estructura.
 
     CODIGO DE EVALUACION
     ```
-    
+    No hay ya que solo queremos ver que campos sugiere.
     ```
 
 
