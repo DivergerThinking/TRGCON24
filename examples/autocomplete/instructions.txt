@@ -1,18 +1,170 @@
 1. Line-by-Line Completion:
 
-def calculate_average
+    def calculate_average
 
-FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+    FEEDBACK: 
 
-CODIGO DE EVALUACION
-```
-...
-```
+        Copilot:
+
+        Cursor
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```
 
 2. Docstring to Code:
 
-def sort_students_by_gpa(self) -> List[Student]:
-    """
-    Sort all students in the registry by their GPA in descending order.
-    Returns a list of students from highest to lowest GPA.
-    """
+    def sort_students_by_gpa(self) -> List[Student]:
+        """
+        Sort all students in the registry by their GPA in descending order.
+        Returns a list of students from highest to lowest GPA.
+        """
+    # Copilot should suggest the implementation
+
+    FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```   
+
+ 3. Function Signature to Implementation:
+
+    def find_students_in_course(self, course_name: str) -> List[Student]: 
+
+    FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```  
+
+4. Comment-Driven Development:
+
+    # Find all students with a GPA above 3.5 and send them a congratulatory email
+    def notify_honor_students(self):    
+
+    FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```  
+
+
+5. Test Case Generation:
+
+    # Write test function names or comments:
+    def test_student_gpa_calculation():
+    # Create a student with known grades
+    # Calculate GPA
+    # Assert expected results
+
+     FEEDBACK: 
+
+        Copilot:
+
+        Cursor
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```
+
+
+6. Pattern Completion:
+
+    # Start a common pattern and let Copilot complete:
+    class StudentNotFoundException(Exception): 
+
+
+     FEEDBACK: 
+
+        Copilot:
+
+        Cursor
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```
+
+
+
+7. Error Handling Pattern:
+
+    # Start writing error handling:
+    try:
+        student = self.get_student(student_id)  
+
+
+     FEEDBACK: 
+
+        Copilot:
+
+        Cursor
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```     
+
+
+8. Data Structure Pattern:
+
+    # Start defining a data structure:
+    student_data = {
+        "name": "John Doe",   
+
+
+     FEEDBACK: 
+
+        Copilot:
+
+        Cursor
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```
+
+
+9.  Type Hint Completion:
+
+    # Start with type hints:
+    from typing import Dict, List, Optional
+
+    def process_grades( 
+
+
+    FEEDBACK: 
+
+        Copilot:
+
+        Cursor
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```    
+10.  Bulk Method Generation:
+
+    # Write multiple method names and let Copilot implement them:
+    def get_top_performers(self, n: int) -> List[Student]:
+
+    def get_course_average(self, course_name: str) -> float:
+
+    def get_student_ranking(self, student_id: int) -> int:     
+
+     FEEDBACK: 
+
+        Copilot:
+
+        Cursor
+
+    CODIGO DE EVALUACION
+    ```
+    
+    ```               
+   
