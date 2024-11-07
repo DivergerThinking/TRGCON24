@@ -4,9 +4,11 @@
 
     FEEDBACK: 
 
-        Copilot: Asume que el metodo es para calcular la media de gpa del registro(completa el nombre del método). Funciona OK
+        Copilot: Asume que el metodo es para calcular la media de gpa del 
+        registro(completa el nombre del método). Funciona OK
 
-        Cursor: Igual que copilot pero no genera comentarios y hace menos líneas de código. Funciona OK
+        Cursor: Igual que copilot pero no genera comentarios y hace menos líneas de
+         código. Funciona OK
 
     CODIGO DE EVALUACION
     ```
@@ -52,7 +54,7 @@
 
     FEEDBACK: 
 
-        Copilot: Solo genera un comentario no llega a generar el metodo.
+        Copilot: Solo genera un comentario, no llega a generar el código del metodo.
 
         Cursor: Todo ok lo genera y se ejecuta bien.
 
@@ -77,7 +79,8 @@
 
         Copilot: Todo OK se ejecuta correctamente.
 
-        Cursor: Hice varias pruebas y alguna vez si que consigió generar el código correctamente pero la mayoria del tiempo solo genera un pass.
+        Cursor: Hice varias pruebas y alguna vez si que consigió generar el código correctamente,
+         pero la mayoria del tiempo solo genera un pass.
 
     CODIGO DE EVALUACION
     ```
@@ -97,9 +100,9 @@
 
      FEEDBACK: 
 
-        Copilot: No funciona simplemente intenta crear un estudiante.
+        Copilot: No funciona. Copilot intenta crear un estudiante.
 
-        Cursor: O genera un pass o solo intenta hacer el assert que no funciona :(
+        Cursor: O genera un pass o solo intenta hacer un assert sin sentido que no funciona :(
 
     CODIGO DE EVALUACION
     ```
@@ -118,7 +121,7 @@
 
         Copilot: Solo genera un pass.
 
-        Cursor: Igual que copilot solo genera un pass
+        Cursor: Igual que copilot solo genera un pass.
 
     CODIGO DE EVALUACION
     ```
@@ -142,7 +145,7 @@
 
      FEEDBACK: 
 
-        Copilot: Genera bien el handling de los errores pero no de golpe hay que tabular línea a línea.
+        Copilot: Genera bien el handling de los errores pero no de golpe, hay que tabular línea a línea.
 
         Cursor: Todo OK.
 
@@ -178,7 +181,7 @@
 
 
 9.  Type Hint Completion:
-
+    (metodo para la clase student)
     # Start with type hints:
     from typing import Dict, List, Optional
 
@@ -187,13 +190,19 @@
 
     FEEDBACK: 
 
-        Copilot:
+        Copilot: Genera los encabezados del método pero dada 
+        la poca información al respecto del objetivo que tiene el método,
+        en cada prueba genera una cosa distinta. Los tipos de los parámetros de entrada y salida 
+        generados no se corresponden con los tipos de los atributos de la clase. Ej: grade lo marca 
+        como float cuando está definido como un Dict.
 
-        Cursor
+        Cursor: Le pasa un poco lo mismo que a copilot sin embargo si que parecen
+         ser más correctos los tipos de los parámetros de entrada y salida
 
     CODIGO DE EVALUACION
     ```
-    
+    No hay, ya que solo queremos comprobar la generación de los parámetros de
+     entrada y salida.
     ```    
 10.  Bulk Method Generation:
 
@@ -206,12 +215,34 @@
 
      FEEDBACK: 
 
-        Copilot:
+        Copilot: Hay generarlas de una en una, no es capaz de generar las 3 a la vez.
+         La implementacion es correcta en 2 de los 3 casos falla en el metofo get_course_average
+         ya que para hacer la media se divide la nota entre todos los alumnos a pesar de que no 
+         tengan ese curso.
 
-        Cursor
+
+        Cursor: Hay generarlas de una en una, no es capaz de generar las 3 a la vez.
+         La implementacion es correcta en 2 de los 3 casos falla en el metofo get_course_average
+         ya que para hacer la media se divide la nota entre todos los alumnos a pesar de que no 
+         tengan ese curso.
 
     CODIGO DE EVALUACION
     ```
+       # Call method get_top_performers to get the top performers (Top 2)
+    top_performers = registry.get_top_performers(2)
+    print("Top Performers:")
+    for student in top_performers:
+        print(f"{student.name} - GPA: {student.calculate_gpa()}")
     
+    # Call method get_course_average to get the average grade of a specific course
+    course_name = "Math"
+    course_average = registry.get_course_average(course_name)
+    print(f"\nAverage grade for course '{course_name}': {course_average}")
+    
+    # Call method get_student_ranking to get the ranking of a student by their ID
+    student_id = 1002  # El ID de Jane Smith
+    student_ranking = registry.get_student_ranking(student_id)
+    print(f"\nRanking for student with ID {student_id}: {student_ranking}")
+    ```               
     ```               
    

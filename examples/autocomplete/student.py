@@ -1,6 +1,5 @@
 from datetime import datetime
-from typing import List, Dict, Optional
-
+from typing import Dict, List, Optional
 class Student:
     def __init__(self, student_id: int, name: str, email: str):
         self.student_id = student_id
@@ -73,6 +72,9 @@ class Student:
             int: Number of courses
         """
         return len(self.courses)
+    
+
+    
 
 class StudentRegistry:
     def __init__(self):
@@ -113,18 +115,12 @@ class StudentRegistry:
             report += f"GPA: {student.calculate_gpa()}\n"
             report += "-" * 25 + "\n"
         
-        return report
-    
-        
-class StudentNotFoundException(Exception):
-    """Exception raised when a student is not found in the registry."""
-    def __init__(self, student_id: int):
-        self.student_id = student_id
-        self.message = f"Student with ID {self.student_id} not found."
-        super().__init__(self.message)      
+        return report     
 
 
 if __name__ == "__main__":
+
+    
     # Create a registry
     registry = StudentRegistry()
     
@@ -160,16 +156,7 @@ if __name__ == "__main__":
     registry.add_student(student1)
     registry.add_student(student2)
     registry.add_student(student3)
-    
-    # Start writing error handling:
-
-    student_id = 1010
-    try: 
-        student = registry.get_student(student_id) 
-        if student is None:
-            raise StudentNotFoundException(student_id)
-    except StudentNotFoundException as e:
-        print(e.message)
+        
 
     
     
