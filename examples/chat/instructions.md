@@ -11,33 +11,43 @@ similar / Cursor seems a bit faster / diff UI seems nicer
 Copilot: #files / @workspace
 Cursor: (+) / @files / @folder / @codebase / @notepad
 
-I. @workspace vs @codebase / @folder
+I. Large context: (copilot = @workspace vs cursor = @codebase / @folder)
 
-Codebase explanation and search:
+Codebase explanation:
 - Explain what this project does at high level. Do not reference code as part of your answer. Be concise in your answer
 - Tell me about the current project structure
 - How do I run this app
+- Could you write a markdown documentation explain the project, its structure and how to run it
+
+Searching through the codebase
 - Which functions are responsible for executing the LLM calls?
 
 Implementation advice:
 - How would you implement a new use case such as translating a codebase to another language? 
 - List all of the files I should give the LLM as context in order to generate the code for this new use case
 
-II. #files vs @folder / @files
+II. Specific context: #files vs @files /@folder / @notepad
 
 Modifying code:
-- How could I make this code more readable? Break down your suggestions into multiple small changes
-- How could you apply DRY principle to this code? Break down your suggestions into multiple small changes
-- Would you rename any of the variables or functions? If yes, list all of the changes you would make and why
+- How could I make this code more readable?
+- Would you rename any of the variables or functions to make them more descriptive?
 
-Creating new code from scratch:
-- Could you please implement a new use case such as translating a codebase to another language? 
+Creating code from scratch:
+- Add an option to 
 
-### Composer
+III. Code edits (Composer in Cursor)
 
-### Additional features
+Modifying code:
+- How could you apply DRY principle to this code?
 
-@notepad: context reusability
-Editing system prompt in Cursor but not in Copilot (.cursorrules)
+Adding new functionality:
+- Could you create a new use case that translates the given codebase to another programming language? 
 
 
+IV. Instructions customization
+
+Copilot = .github/copilot-instructions.md
+Cursor = .cursorrules
+
+
+🤖👱🛠️
