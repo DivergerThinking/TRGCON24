@@ -1,6 +1,4 @@
 from datetime import datetime
-from typing import Dict, List, Optional
-import re
 from typing import List, Dict, Optional
 
 class Student:
