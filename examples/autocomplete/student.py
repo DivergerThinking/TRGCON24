@@ -1,4 +1,5 @@
 from datetime import datetime
+from typing import Dict, List, Optional
 import re
 from typing import List, Dict, Optional
 
@@ -114,9 +115,13 @@ class StudentRegistry:
             report += f"GPA: {student.calculate_gpa()}\n"
             report += "-" * 25 + "\n"
         
-        return report
+        return report     
+
 
 if __name__ == "__main__":
+
+    
+    # Create a registry
     registry = StudentRegistry()
     registry.add_student(Student(1, "John Doe", "john.doe@example.com"))
     registry.add_student(Student(2, "Jane Doe", "jane.doe@example.com"))

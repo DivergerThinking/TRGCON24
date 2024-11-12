@@ -1,18 +1,248 @@
 1. Line-by-Line Completion:
 
-def calculate_average
+    def calculate_average
 
-FEEDBACK: ... (ex: funciona bien con copilot / mal con cursor)
+    FEEDBACK: 
 
-CODIGO DE EVALUACION
-```
-...
-```
+        Copilot: Asume que el metodo es para calcular la media de gpa del 
+        registro(completa el nombre del método). Funciona OK
+
+        Cursor: Igual que copilot pero no genera comentarios y hace menos líneas de
+         código. Funciona OK
+
+    CODIGO DE EVALUACION
+    ```
+    # Calculate and print individual student GPAs
+    print("Individual Student GPAs:")
+    for student_id, student in registry.students.items():
+        print(f"{student.name}: {student.calculate_gpa()}")
+    
+    # Calculate and print average GPA
+    average_gpa = registry.calculate_average_gpa()
+    print(f"\nAverage GPA across all students: {average_gpa}")
+    # Expected average GPA: (3.5 + 3.0 + 2.5) / 3 = 3.0
+    ```
 
 2. Docstring to Code:
 
-def sort_students_by_gpa(self) -> List[Student]:
-    """
-    Sort all students in the registry by their GPA in descending order.
-    Returns a list of students from highest to lowest GPA.
-    """
+    def sort_students_by_gpa(self) -> List[Student]:
+        """
+        Sort all students in the registry by their GPA in descending order.
+        Returns a list of students from highest to lowest GPA.
+        """
+    # Copilot should suggest the implementation
+
+    FEEDBACK: 
+
+        Copilot: Todo Ok.
+
+        Cursor: Todo Ok. Genera exactamente el mismo código
+
+    CODIGO DE EVALUACION
+    ```
+    # Sort students by GPA
+    sorted_students = registry.sort_students_by_gpa()
+
+    print("Sorted Students by GPA (Descending):")
+    for student in sorted_students:
+        print(f"{student.name}: GPA = {student.calculate_gpa()}")
+    ```   
+
+ 3. Function Signature to Implementation:
+
+    def find_students_in_course(self, course_name: str) -> List[Student]: 
+
+    FEEDBACK: 
+
+        Copilot: Solo genera un comentario, no llega a generar el código del metodo.
+
+        Cursor: Todo ok lo genera y se ejecuta bien.
+
+    CODIGO DE EVALUACION
+    ```
+     # Find students enrolled in a specific course
+     course_name = "Math"
+     students_in_course = registry.find_students_in_course(course_name)
+    
+     # Print students enrolled in the course
+     print(f"Students enrolled in '{course_name}':")
+     for student in students_in_course:
+        print(f"{student.name} (ID: {student.student_id})")
+    ```  
+
+4. Comment-Driven Development:
+
+    # Find all students with a GPA equals or above 3.5 and send them a congratulatory email
+    def notify_honor_students(self):     
+
+    FEEDBACK:
+
+        Copilot: Todo OK se ejecuta correctamente.
+
+        Cursor: Hice varias pruebas y alguna vez si que consigió generar el código correctamente,
+         pero la mayoria del tiempo solo genera un pass.
+
+    CODIGO DE EVALUACION
+    ```
+    # Congrats to the brilliant students
+    print("Sending congratulatory emails to honor students:")
+    registry.notify_honor_students()
+    ```  
+
+
+5. Test Case Generation:
+
+    # Write test function names or comments:
+    def test_student_gpa_calculation():
+    # Create a student with known grades
+    # Calculate GPA
+    # Assert expected results
+
+     FEEDBACK: 
+
+        Copilot: No funciona. Copilot intenta crear un estudiante.
+
+        Cursor: O genera un pass o solo intenta hacer un assert sin sentido que no funciona :(
+
+    CODIGO DE EVALUACION
+    ```
+    #Test 
+    registry.test_student_gpa_calculation()
+    ```
+
+
+6. Pattern Completion:
+
+    # Start a common pattern and let Copilot complete:
+    class StudentNotFoundException(Exception): 
+
+
+     FEEDBACK: 
+
+        Copilot: Solo genera un pass.
+
+        Cursor: Igual que copilot solo genera un pass.
+
+    CODIGO DE EVALUACION
+    ```
+    #try with the new exception
+    try:
+        student = registry.get_student(9999)  # ID que no existe
+        if student is None:
+            raise StudentNotFoundException(9999)
+    except StudentNotFoundException as e:
+        print(e)  
+    ```
+
+
+
+7. Error Handling Pattern:
+
+    # Start writing error handling:
+    try:
+        student = self.get_student(9999)  
+
+
+     FEEDBACK: 
+
+        Copilot: Genera bien el handling de los errores pero no de golpe, hay que tabular línea a línea.
+
+        Cursor: Todo OK.
+
+    CODIGO DE EVALUACION(es una excepxion poner ENCIMA del main)
+    ```
+    class StudentNotFoundException(Exception):
+    """Exception raised when a student is not found in the registry."""
+    def __init__(self, student_id: int):
+        self.student_id = student_id
+        self.message = f"Student with ID {self.student_id} not found."
+        super().__init__(self.message)      
+
+    ```     
+
+
+8. Data Structure Pattern:
+
+    # Start defining a data structure:
+    student_data = {
+        "name": "John Doe",   
+
+
+     FEEDBACK: 
+
+        Copilot: A medida que vas tabulando va sugiriendo nuevos campos.
+
+        Cursor: Genera de golpe los campos student_id y gmail y cierra la estructura.
+
+    CODIGO DE EVALUACION
+    ```
+    No hay ya que solo queremos ver que campos sugiere.
+    ```
+
+
+9.  Type Hint Completion:
+    (metodo para la clase student)
+    # Start with type hints:
+    from typing import Dict, List, Optional
+
+    def process_grades( 
+
+
+    FEEDBACK: 
+
+        Copilot: Genera los encabezados del método pero dada 
+        la poca información al respecto del objetivo que tiene el método,
+        en cada prueba genera una cosa distinta. Los tipos de los parámetros de entrada y salida 
+        generados no se corresponden con los tipos de los atributos de la clase. Ej: grade lo marca 
+        como float cuando está definido como un Dict.
+
+        Cursor: Le pasa un poco lo mismo que a copilot sin embargo si que parecen
+         ser más correctos los tipos de los parámetros de entrada y salida
+
+    CODIGO DE EVALUACION
+    ```
+    No hay, ya que solo queremos comprobar la generación de los parámetros de
+     entrada y salida.
+    ```    
+10.  Bulk Method Generation:
+
+    # Write multiple method names and let Copilot implement them:
+    def get_top_performers(self, n: int) -> List[Student]:
+
+    def get_course_average(self, course_name: str) -> float:
+
+    def get_student_ranking(self, student_id: int) -> int:     
+
+     FEEDBACK: 
+
+        Copilot: Hay generarlas de una en una, no es capaz de generar las 3 a la vez.
+         La implementacion es correcta en 2 de los 3 casos falla en el metofo get_course_average
+         ya que para hacer la media se divide la nota entre todos los alumnos a pesar de que no 
+         tengan ese curso.
+
+
+        Cursor: Hay generarlas de una en una, no es capaz de generar las 3 a la vez.
+         La implementacion es correcta en 2 de los 3 casos falla en el metofo get_course_average
+         ya que para hacer la media se divide la nota entre todos los alumnos a pesar de que no 
+         tengan ese curso.
+
+    CODIGO DE EVALUACION
+    ```
+       # Call method get_top_performers to get the top performers (Top 2)
+    top_performers = registry.get_top_performers(2)
+    print("Top Performers:")
+    for student in top_performers:
+        print(f"{student.name} - GPA: {student.calculate_gpa()}")
+    
+    # Call method get_course_average to get the average grade of a specific course
+    course_name = "Math"
+    course_average = registry.get_course_average(course_name)
+    print(f"\nAverage grade for course '{course_name}': {course_average}")
+    
+    # Call method get_student_ranking to get the ranking of a student by their ID
+    student_id = 1002  # El ID de Jane Smith
+    student_ranking = registry.get_student_ranking(student_id)
+    print(f"\nRanking for student with ID {student_id}: {student_ranking}")
+    ```               
+    ```               
+   
