@@ -12,6 +12,7 @@ from codeas.core.usage_tracker import usage_tracker
 
 
 class TestingStep(BaseModel):
+    """Represents a single step in the testing strategy."""
     files_paths: List[str]
     type_of_test: str
     guidelines: str
@@ -19,6 +20,7 @@ class TestingStep(BaseModel):
 
 
 class TestingStrategy(BaseModel):
+    """Collection of testing steps that form a complete testing strategy."""
     strategy: List[TestingStep]
 
 
@@ -28,22 +30,36 @@ def define_testing_strategy(
     metadata: RepoMetadata,
     preview: bool = False,
 ) -> str:
+    """
+    Defines a testing strategy for the given repository.
+    
+    Args:
+        llm_client: Client for LLM interactions
+        repo: Repository to analyze
+        metadata: Repository metadata
+        preview: If True, only preview the strategy without executing
+    """
+    # Create retriever with specific settings for testing strategy
     retriever = ContextRetriever(include_code_files=True, use_details=True)
     context = retriever.retrieve(
-        repo.included_files_paths, repo.included_files_tokens, metadata
+        repo.included_files_paths, 
+        repo.included_files_tokens, 
+        metadata
     )
 
+    # Initialize agent with testing strategy configuration
     agent = Agent(
         instructions=prompts.define_testing_strategy,
         model="gpt-4o",
         response_format=TestingStrategy,
     )
+
     if preview:
         return agent.preview(context=context)
-    else:
-        result = agent.run(llm_client, context=context)
-        usage_tracker.record_usage("define_testing_strategy", result.cost["total_cost"])
-        return result
+    
+    result = agent.run(llm_client, context=context)
+    usage_tracker.record_usage("define_testing_strategy", result.cost["total_cost"])
+    return result
 
 
 def parse_response(response: object):

@@ -1,5 +1,6 @@
 from datetime import datetime
-from typing import List, Dict, Optional
+from typing import Dict, List, Optional
+
 
 class Student:
     def __init__(self, student_id: int, name: str, email: str):
@@ -73,6 +74,7 @@ class Student:
             int: Number of courses
         """
         return len(self.courses)
+    
 
 class StudentRegistry:
     def __init__(self):
@@ -113,16 +115,45 @@ class StudentRegistry:
             report += f"GPA: {student.calculate_gpa()}\n"
             report += "-" * 25 + "\n"
         
-        return report     
-
+        return report
+        
 
 if __name__ == "__main__":
-
-    
     # Create a registry
     registry = StudentRegistry()
-    registry.add_student(Student(1, "John Doe", "john.doe@example.com"))
-    registry.add_student(Student(2, "Jane Doe", "jane.doe@example.com"))
-    registry.add_student(Student(3, "Jim Beam", "jim.beam@example.com"))
-    print(registry.generate_report())
     
+    # Create some test students
+    student1 = Student(1001, "John Doe", "john@example.com")
+    student2 = Student(1002, "Jane Smith", "jane@example.com")
+    student3 = Student(1003, "Bob Johnson", "bob@example.com")
+    
+    # Add courses and grades for student1
+    student1.add_course("Math")
+    student1.add_course("Biology")
+    student1.add_course("Physics")
+    student1.add_grade("Math", 95)  # GPA: 4.0
+    student1.add_grade("Physics", 88)  # GPA: 3.0
+    # Expected GPA: 3.5
+    
+    # Add courses and grades for student2
+    student2.add_course("Chemistry")
+    student2.add_course("Biology")
+    student2.add_course("English")
+    student2.add_grade("Chemistry", 92)  # GPA: 4.0
+    student2.add_grade("Biology", 85)  # GPA: 3.0
+    student2.add_grade("English", 78)  # GPA: 2.0
+    # Expected GPA: 3.0
+    
+    # Add courses and grades for student3
+    student3.add_course("History")
+    student3.add_course("Literature")
+    student3.add_grade("History", 75)  # GPA: 2.0
+    student3.add_grade("Literature", 82)  # GPA: 3.0
+    # Expected GPA: 2.5
+    
+    # Add students to registry
+    registry.add_student(student1)
+    registry.add_student(student2)
+    registry.add_student(student3)    
+    
+    print(registry.generate_report())
